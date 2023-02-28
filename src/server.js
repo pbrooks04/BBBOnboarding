@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express');
 const app = express();
-const PORT = 8080;
+const PORT = 3000;
 
 // This should be a db or something better than just a var
 // let requestHistory = [];
