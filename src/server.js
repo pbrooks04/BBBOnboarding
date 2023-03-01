@@ -19,6 +19,10 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/modules/index.html'));
 });
 
+app.get('/chatgpt', (req, res) => {
+  res.sendFile(path.join(__dirname, '/modules/chatgpt/animation/index.html'));
+});
+
 app.get('/async', async (req, res) => {
   const result = await wasteTime();
   res.status(200).send(result);

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Canvas Animation</title>
+  <style>
+    canvas {
+      border: 1px solid #000000;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="myCanvas" width="400" height="400"></canvas>
+  <button id="toggleBtn">Start Animation</button>
+
+  <script>
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+    let x = canvas.width / 2;
+    let y = canvas.height / 2;
+    let dx = 2;
+    let dy = -2;
+    let shape = "circle";
+    let colors = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF", "#00FFFF"];
+    let colorIndex = 0;
+    let animationInterval;
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.beginPath();
+      if (shape === "circle") {
+        ctx.arc(x, y, 20, 0, Math.PI * 2);
+      } else if (shape === "square") {
+        ctx.fillRect(x - 20, y - 20, 40, 40);
+      } else if (shape === "triangle") {
+        ctx.moveTo(x, y - 20);
+        ctx.lineTo(x + 20, y + 20);
+        ctx.lineTo(x - 20, y + 20);
+        ctx.closePath();
+      }
+      ctx.fillStyle = colors[colorIndex];
+      ctx.fill();
+      ctx.closePath();
+
+      if (x + dx > canvas.width - 20 || x + dx < 20) {
+        dx = -dx;
+        colorIndex = (colorIndex + 1) % colors.length;
+        if (shape === "circle") {
+          shape = "square";
+        } else if (shape === "square") {
+          shape = "triangle";
+        } else if (shape === "triangle") {
+          shape = "circle";
+        }
+      }
+      if (y + dy > canvas.height - 20 || y + dy < 20) {
+        dy = -dy;
+        colorIndex = (colorIndex + 1) % colors.length;
+        if (shape === "circle") {
+          shape = "square";
+        } else if (shape === "square") {
+          shape = "triangle";
+        } else if (shape === "triangle") {
+          shape = "circle";
+        }
+      }
+
+      x += dx;
+      y += dy;
+    }
+
+    function startAnimation() {
+      animationInterval = setInterval(draw, 10);
+    }
+
+    function stopAnimation() {
+      clearInterval(animationInterval);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      x = canvas.width / 2;
+      y = canvas.height / 2;
+      dx = 2;
+      dy = -2;
+      colorIndex = 0;
+      shape = "circle";
+    }
+
+    document.getElementById("toggleBtn").addEventListener("click", function () {
+      if (animationInterval) {
+        stopAnimation();
+        this.textContent = "Start Animation";
+      } else {
+        startAnimation();
+        this.textContent = "Stop Animation";
+      }
+    });
+  </script>
+</body>
+
+</html>

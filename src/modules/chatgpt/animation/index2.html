@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Animation Example</title>
+  <style>
+    #box {
+      position: absolute;
+      left: 50px;
+      top: 50px;
+      width: 50px;
+      height: 50px;
+      background-color: red;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box"></div>
+  <button id="start-stop-button">Start</button>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      var box = $("#box");
+      var isAnimating = false;
+      var animationInterval;
+
+      function animateBox() {
+        box.animate(
+          {
+            left: "+=100",
+            top: "+=100",
+            width: "+=50",
+            height: "+=50",
+            opacity: 0
+          },
+          {
+            duration: 2000,
+            easing: "swing",
+            complete: function () {
+              box.css({ opacity: 1 });
+            }
+          }
+        );
+      }
+
+      $("#start-stop-button").click(function () {
+        if (isAnimating) {
+          clearInterval(animationInterval);
+          isAnimating = false;
+          $(this).text("Start");
+        } else {
+          animateBox();
+          animationInterval = setInterval(animateBox, 2000);
+          isAnimating = true;
+          $(this).text("Stop");
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
