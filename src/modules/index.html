@@ -1,34 +1,45 @@
 <html>
-  <head>
-    <title>HTML & JQuery Demo</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src = "./script.js"></script>
-  </head>
-  <body>
-    <div class="container">
-      <div class="image">
-        <img src="https://picsum.photos/75" alt="Image" />
+
+<head>
+  <title>HTML & JQuery Demo</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script type="text/javascript" src="http://jqwidgets.com/jquery-widgets-demo/jqwidgets/jqx-all.js"></script>
+  <link rel="stylesheet" type="text/css"
+    href="http://jqwidgets.com/jquery-widgets-demo/jqwidgets/styles/jqx.base.css" />
+
+  <script src="./script.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="image">
+      <img src="https://picsum.photos/75" alt="Image" />
+    </div>
+    <h1 id="greeting">Hello!</h1>
+    <div class="row">
+      <div class="column">
+        <button id="btn_alert">Create an alert</button>
+        <button id="btn_animation">Run an animation</button>
+        <button id="btn_async">Make an async call</button>
       </div>
-      <h1 id="greeting">Hello!</h1>
-      <div class="row">
-        <div class="column">
-          <button id="btn_alert">Create an alert</button>
-          <button id="btn_animation">Run an animation</button>
-          <button id="btn_async">Make an async call</button>
-        </div>
-        <div class="column">
-          <button id="btn_rotate">Rotate Image</button>
-        </div>
-      </div>
-      <p id="p_lucky"></p>
-      <div id="animation"></div>
-      <div>
-        <!-- TODO: Get history icon -->
-        <!-- TODO: Menu button to open side panel with history -->
-        <img id="icon_history" src="./images/description.svg" alt="history" />
-        <div id="history"></div>
+      <div class="column">
+        <button id="btn_history">View History Table</button>
+        <button id="btn_sms">Send me a text</button>
+        <label for="input_phone">Enter your phone number:</label>
+        <input type="tel" id="input_phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" maxlength="10" />
+
       </div>
     </div>
-  </body>
+    <p id="p_lucky"></p>
+    <div id="animation">
+      <p id="p_animation">Well hello there</p>
+    </div>
+    <div id="history" hidden>
+      <img id="icon_history" src="./images/description.svg" alt="history" />
+      <div id="jqxgrid"></div>
+    </div>
+  </div>
+</body>
+
 </html>
